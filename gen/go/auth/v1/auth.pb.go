@@ -450,7 +450,7 @@ const file_auth_v1_auth_proto_rawDesc = "" +
 	"\x04Auth\x12?\n" +
 	"\bRegister\x12\x18.auth.v1.RegisterRequest\x1a\x19.auth.v1.RegisterResponse\x12=\n" +
 	"\fAuthenticate\x12\x15.auth.v1.LoginRequest\x1a\x16.auth.v1.LoginResponse\x12<\n" +
-	"\aGetRole\x12\x17.auth.v1.GetRoleRequest\x1a\x18.auth.v1.GetRoleResponseB\x1bZ\x19sso/gen/go/auth/v1;authv1b\x06proto3"
+	"\aGetRole\x12\x17.auth.v1.GetRoleRequest\x1a\x18.auth.v1.GetRoleResponseB1Z/github.com/Mas4trt/protos/gen/go/auth/v1;authv1b\x06proto3"
 
 var (
 	file_auth_v1_auth_proto_rawDescOnce sync.Once
