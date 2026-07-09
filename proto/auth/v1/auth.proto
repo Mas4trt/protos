@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+package auth.v1;
+
+option go_package = "sso/gen/go/auth/v1;authv1";
+
+service Auth {
+    rpc Register (RegisterRequest) returns (RegisterResponse); // Registers a new user.
+    rpc  Authenticate (LoginRequest) returns (LoginResponse); // Authenticates user and returns JWT tokens.
+    rpc GetRole (GetRoleRequest) returns (GetRoleResponse); 
+}
+
+enum Role {
+    ROLE_UNSPECIFIED = 0;
+    ROLE_USER = 1;
+    ROLE_ADMIN = 2;
+}
+
+message User {
+    uint64 id = 1;
+    string email = 2;
+}
+
+message RegisterRequest {
+  string email = 1;
+  string password = 2;
+}
+
+message RegisterResponse {
+    User user = 1;
+}
+
+message LoginRequest {
+  string email = 1;
+  string password = 2;
+  uint64 application_id = 3;
+}
+
+message LoginResponse {
+  string access_token = 1;
+  string refresh_token = 2;
+}
+
+message GetRoleRequest {
+  uint64 user_id = 1;
+}
+
+message GetRoleResponse {
+  Role role = 1;
+}
