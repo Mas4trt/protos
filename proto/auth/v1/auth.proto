@@ -5,20 +5,20 @@ package auth.v1;
 option go_package = "github.com/Mas4trt/protos/gen/go/auth/v1;authv1";
 
 service Auth {
-    rpc Register (RegisterRequest) returns (RegisterResponse); // Registers a new user.
-    rpc  Authenticate (LoginRequest) returns (LoginResponse); // Authenticates user and returns JWT tokens.
-    rpc GetRole (GetRoleRequest) returns (GetRoleResponse); 
+  rpc Register(RegisterRequest) returns (RegisterResponse);
+  rpc Authenticate(LoginRequest) returns (LoginResponse);
+  rpc GetRole(GetRoleRequest) returns (GetRoleResponse);
 }
 
 enum Role {
-    ROLE_UNSPECIFIED = 0;
-    ROLE_USER = 1;
-    ROLE_ADMIN = 2;
+  ROLE_UNSPECIFIED = 0;
+  ROLE_USER = 1;
+  ROLE_ADMIN = 2;
 }
 
 message User {
-    uint64 id = 1;
-    string email = 2;
+  uint64 id = 1;
+  string email = 2;
 }
 
 message RegisterRequest {
@@ -27,7 +27,7 @@ message RegisterRequest {
 }
 
 message RegisterResponse {
-    User user = 1;
+  uint64 user_id = 1; // отдаём только id, e-mail клиент уже знает
 }
 
 message LoginRequest {
