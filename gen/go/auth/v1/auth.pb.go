@@ -7,11 +7,12 @@
 package authv1
 
 import (
-	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
-	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
+
+	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
+	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 )
 
 const (
@@ -176,7 +177,7 @@ func (x *RegisterRequest) GetPassword() string {
 
 type RegisterResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	User          *User                  `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
+	UserId        uint64                 `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"` // отдаём только id, e-mail клиент уже знает
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -211,11 +212,11 @@ func (*RegisterResponse) Descriptor() ([]byte, []int) {
 	return file_auth_v1_auth_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *RegisterResponse) GetUser() *User {
+func (x *RegisterResponse) GetUserId() uint64 {
 	if x != nil {
-		return x.User
+		return x.UserId
 	}
-	return nil
+	return 0
 }
 
 type LoginRequest struct {
@@ -428,9 +429,9 @@ const file_auth_v1_auth_proto_rawDesc = "" +
 	"\x05email\x18\x02 \x01(\tR\x05email\"C\n" +
 	"\x0fRegisterRequest\x12\x14\n" +
 	"\x05email\x18\x01 \x01(\tR\x05email\x12\x1a\n" +
-	"\bpassword\x18\x02 \x01(\tR\bpassword\"5\n" +
-	"\x10RegisterResponse\x12!\n" +
-	"\x04user\x18\x01 \x01(\v2\r.auth.v1.UserR\x04user\"g\n" +
+	"\bpassword\x18\x02 \x01(\tR\bpassword\"+\n" +
+	"\x10RegisterResponse\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\x04R\x06userId\"g\n" +
 	"\fLoginRequest\x12\x14\n" +
 	"\x05email\x18\x01 \x01(\tR\x05email\x12\x1a\n" +
 	"\bpassword\x18\x02 \x01(\tR\bpassword\x12%\n" +
@@ -477,19 +478,18 @@ var file_auth_v1_auth_proto_goTypes = []any{
 	(*GetRoleResponse)(nil),  // 7: auth.v1.GetRoleResponse
 }
 var file_auth_v1_auth_proto_depIdxs = []int32{
-	1, // 0: auth.v1.RegisterResponse.user:type_name -> auth.v1.User
-	0, // 1: auth.v1.GetRoleResponse.role:type_name -> auth.v1.Role
-	2, // 2: auth.v1.Auth.Register:input_type -> auth.v1.RegisterRequest
-	4, // 3: auth.v1.Auth.Authenticate:input_type -> auth.v1.LoginRequest
-	6, // 4: auth.v1.Auth.GetRole:input_type -> auth.v1.GetRoleRequest
-	3, // 5: auth.v1.Auth.Register:output_type -> auth.v1.RegisterResponse
-	5, // 6: auth.v1.Auth.Authenticate:output_type -> auth.v1.LoginResponse
-	7, // 7: auth.v1.Auth.GetRole:output_type -> auth.v1.GetRoleResponse
-	5, // [5:8] is the sub-list for method output_type
-	2, // [2:5] is the sub-list for method input_type
-	2, // [2:2] is the sub-list for extension type_name
-	2, // [2:2] is the sub-list for extension extendee
-	0, // [0:2] is the sub-list for field type_name
+	0, // 0: auth.v1.GetRoleResponse.role:type_name -> auth.v1.Role
+	2, // 1: auth.v1.Auth.Register:input_type -> auth.v1.RegisterRequest
+	4, // 2: auth.v1.Auth.Authenticate:input_type -> auth.v1.LoginRequest
+	6, // 3: auth.v1.Auth.GetRole:input_type -> auth.v1.GetRoleRequest
+	3, // 4: auth.v1.Auth.Register:output_type -> auth.v1.RegisterResponse
+	5, // 5: auth.v1.Auth.Authenticate:output_type -> auth.v1.LoginResponse
+	7, // 6: auth.v1.Auth.GetRole:output_type -> auth.v1.GetRoleResponse
+	4, // [4:7] is the sub-list for method output_type
+	1, // [1:4] is the sub-list for method input_type
+	1, // [1:1] is the sub-list for extension type_name
+	1, // [1:1] is the sub-list for extension extendee
+	0, // [0:1] is the sub-list for field type_name
 }
 
 func init() { file_auth_v1_auth_proto_init() }
