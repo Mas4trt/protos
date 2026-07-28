@@ -7,9 +7,10 @@ option go_package = "github.com/Mas4trt/protos/gen/go/auth/v1;authv1";
 service Auth {
   rpc Register(RegisterRequest) returns (RegisterResponse);
   rpc Authenticate(LoginRequest) returns (LoginResponse);
+  rpc RefreshTokens(RefreshTokensRequest) returns (LoginResponse);
+  rpc Logout(LogoutRequest) returns (LogoutResponse);
   rpc GetRole(GetRoleRequest) returns (GetRoleResponse);
 }
-
 enum Role {
   ROLE_UNSPECIFIED = 0;
   ROLE_USER = 1;
@@ -47,4 +48,17 @@ message GetRoleRequest {
 
 message GetRoleResponse {
   Role role = 1;
+}
+
+message RefreshTokensRequest {
+  string refresh_token = 1;
+  uint64 application_id = 2;
+}
+
+message LogoutRequest {
+  string refresh_token = 1;
+}
+
+message LogoutResponse {
+  bool success = 1;
 }

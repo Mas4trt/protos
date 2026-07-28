@@ -7,12 +7,11 @@
 package authv1
 
 import (
+	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
+	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
-
-	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
-	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 )
 
 const (
@@ -419,6 +418,146 @@ func (x *GetRoleResponse) GetRole() Role {
 	return Role_ROLE_UNSPECIFIED
 }
 
+type RefreshTokensRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	RefreshToken  string                 `protobuf:"bytes,1,opt,name=refresh_token,json=refreshToken,proto3" json:"refresh_token,omitempty"`
+	ApplicationId uint64                 `protobuf:"varint,2,opt,name=application_id,json=applicationId,proto3" json:"application_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *RefreshTokensRequest) Reset() {
+	*x = RefreshTokensRequest{}
+	mi := &file_auth_v1_auth_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *RefreshTokensRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RefreshTokensRequest) ProtoMessage() {}
+
+func (x *RefreshTokensRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_auth_v1_auth_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RefreshTokensRequest.ProtoReflect.Descriptor instead.
+func (*RefreshTokensRequest) Descriptor() ([]byte, []int) {
+	return file_auth_v1_auth_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *RefreshTokensRequest) GetRefreshToken() string {
+	if x != nil {
+		return x.RefreshToken
+	}
+	return ""
+}
+
+func (x *RefreshTokensRequest) GetApplicationId() uint64 {
+	if x != nil {
+		return x.ApplicationId
+	}
+	return 0
+}
+
+type LogoutRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	RefreshToken  string                 `protobuf:"bytes,1,opt,name=refresh_token,json=refreshToken,proto3" json:"refresh_token,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *LogoutRequest) Reset() {
+	*x = LogoutRequest{}
+	mi := &file_auth_v1_auth_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *LogoutRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*LogoutRequest) ProtoMessage() {}
+
+func (x *LogoutRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_auth_v1_auth_proto_msgTypes[8]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use LogoutRequest.ProtoReflect.Descriptor instead.
+func (*LogoutRequest) Descriptor() ([]byte, []int) {
+	return file_auth_v1_auth_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *LogoutRequest) GetRefreshToken() string {
+	if x != nil {
+		return x.RefreshToken
+	}
+	return ""
+}
+
+type LogoutResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *LogoutResponse) Reset() {
+	*x = LogoutResponse{}
+	mi := &file_auth_v1_auth_proto_msgTypes[9]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *LogoutResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*LogoutResponse) ProtoMessage() {}
+
+func (x *LogoutResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_auth_v1_auth_proto_msgTypes[9]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use LogoutResponse.ProtoReflect.Descriptor instead.
+func (*LogoutResponse) Descriptor() ([]byte, []int) {
+	return file_auth_v1_auth_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *LogoutResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
 var File_auth_v1_auth_proto protoreflect.FileDescriptor
 
 const file_auth_v1_auth_proto_rawDesc = "" +
@@ -442,15 +581,24 @@ const file_auth_v1_auth_proto_rawDesc = "" +
 	"\x0eGetRoleRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\x04R\x06userId\"4\n" +
 	"\x0fGetRoleResponse\x12!\n" +
-	"\x04role\x18\x01 \x01(\x0e2\r.auth.v1.RoleR\x04role*;\n" +
+	"\x04role\x18\x01 \x01(\x0e2\r.auth.v1.RoleR\x04role\"b\n" +
+	"\x14RefreshTokensRequest\x12#\n" +
+	"\rrefresh_token\x18\x01 \x01(\tR\frefreshToken\x12%\n" +
+	"\x0eapplication_id\x18\x02 \x01(\x04R\rapplicationId\"4\n" +
+	"\rLogoutRequest\x12#\n" +
+	"\rrefresh_token\x18\x01 \x01(\tR\frefreshToken\"*\n" +
+	"\x0eLogoutResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess*;\n" +
 	"\x04Role\x12\x14\n" +
 	"\x10ROLE_UNSPECIFIED\x10\x00\x12\r\n" +
 	"\tROLE_USER\x10\x01\x12\x0e\n" +
 	"\n" +
-	"ROLE_ADMIN\x10\x022\xc4\x01\n" +
+	"ROLE_ADMIN\x10\x022\xc7\x02\n" +
 	"\x04Auth\x12?\n" +
 	"\bRegister\x12\x18.auth.v1.RegisterRequest\x1a\x19.auth.v1.RegisterResponse\x12=\n" +
-	"\fAuthenticate\x12\x15.auth.v1.LoginRequest\x1a\x16.auth.v1.LoginResponse\x12<\n" +
+	"\fAuthenticate\x12\x15.auth.v1.LoginRequest\x1a\x16.auth.v1.LoginResponse\x12F\n" +
+	"\rRefreshTokens\x12\x1d.auth.v1.RefreshTokensRequest\x1a\x16.auth.v1.LoginResponse\x129\n" +
+	"\x06Logout\x12\x16.auth.v1.LogoutRequest\x1a\x17.auth.v1.LogoutResponse\x12<\n" +
 	"\aGetRole\x12\x17.auth.v1.GetRoleRequest\x1a\x18.auth.v1.GetRoleResponseB1Z/github.com/Mas4trt/protos/gen/go/auth/v1;authv1b\x06proto3"
 
 var (
@@ -466,30 +614,37 @@ func file_auth_v1_auth_proto_rawDescGZIP() []byte {
 }
 
 var file_auth_v1_auth_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_auth_v1_auth_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
+var file_auth_v1_auth_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
 var file_auth_v1_auth_proto_goTypes = []any{
-	(Role)(0),                // 0: auth.v1.Role
-	(*User)(nil),             // 1: auth.v1.User
-	(*RegisterRequest)(nil),  // 2: auth.v1.RegisterRequest
-	(*RegisterResponse)(nil), // 3: auth.v1.RegisterResponse
-	(*LoginRequest)(nil),     // 4: auth.v1.LoginRequest
-	(*LoginResponse)(nil),    // 5: auth.v1.LoginResponse
-	(*GetRoleRequest)(nil),   // 6: auth.v1.GetRoleRequest
-	(*GetRoleResponse)(nil),  // 7: auth.v1.GetRoleResponse
+	(Role)(0),                    // 0: auth.v1.Role
+	(*User)(nil),                 // 1: auth.v1.User
+	(*RegisterRequest)(nil),      // 2: auth.v1.RegisterRequest
+	(*RegisterResponse)(nil),     // 3: auth.v1.RegisterResponse
+	(*LoginRequest)(nil),         // 4: auth.v1.LoginRequest
+	(*LoginResponse)(nil),        // 5: auth.v1.LoginResponse
+	(*GetRoleRequest)(nil),       // 6: auth.v1.GetRoleRequest
+	(*GetRoleResponse)(nil),      // 7: auth.v1.GetRoleResponse
+	(*RefreshTokensRequest)(nil), // 8: auth.v1.RefreshTokensRequest
+	(*LogoutRequest)(nil),        // 9: auth.v1.LogoutRequest
+	(*LogoutResponse)(nil),       // 10: auth.v1.LogoutResponse
 }
 var file_auth_v1_auth_proto_depIdxs = []int32{
-	0, // 0: auth.v1.GetRoleResponse.role:type_name -> auth.v1.Role
-	2, // 1: auth.v1.Auth.Register:input_type -> auth.v1.RegisterRequest
-	4, // 2: auth.v1.Auth.Authenticate:input_type -> auth.v1.LoginRequest
-	6, // 3: auth.v1.Auth.GetRole:input_type -> auth.v1.GetRoleRequest
-	3, // 4: auth.v1.Auth.Register:output_type -> auth.v1.RegisterResponse
-	5, // 5: auth.v1.Auth.Authenticate:output_type -> auth.v1.LoginResponse
-	7, // 6: auth.v1.Auth.GetRole:output_type -> auth.v1.GetRoleResponse
-	4, // [4:7] is the sub-list for method output_type
-	1, // [1:4] is the sub-list for method input_type
-	1, // [1:1] is the sub-list for extension type_name
-	1, // [1:1] is the sub-list for extension extendee
-	0, // [0:1] is the sub-list for field type_name
+	0,  // 0: auth.v1.GetRoleResponse.role:type_name -> auth.v1.Role
+	2,  // 1: auth.v1.Auth.Register:input_type -> auth.v1.RegisterRequest
+	4,  // 2: auth.v1.Auth.Authenticate:input_type -> auth.v1.LoginRequest
+	8,  // 3: auth.v1.Auth.RefreshTokens:input_type -> auth.v1.RefreshTokensRequest
+	9,  // 4: auth.v1.Auth.Logout:input_type -> auth.v1.LogoutRequest
+	6,  // 5: auth.v1.Auth.GetRole:input_type -> auth.v1.GetRoleRequest
+	3,  // 6: auth.v1.Auth.Register:output_type -> auth.v1.RegisterResponse
+	5,  // 7: auth.v1.Auth.Authenticate:output_type -> auth.v1.LoginResponse
+	5,  // 8: auth.v1.Auth.RefreshTokens:output_type -> auth.v1.LoginResponse
+	10, // 9: auth.v1.Auth.Logout:output_type -> auth.v1.LogoutResponse
+	7,  // 10: auth.v1.Auth.GetRole:output_type -> auth.v1.GetRoleResponse
+	6,  // [6:11] is the sub-list for method output_type
+	1,  // [1:6] is the sub-list for method input_type
+	1,  // [1:1] is the sub-list for extension type_name
+	1,  // [1:1] is the sub-list for extension extendee
+	0,  // [0:1] is the sub-list for field type_name
 }
 
 func init() { file_auth_v1_auth_proto_init() }
@@ -503,7 +658,7 @@ func file_auth_v1_auth_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_auth_v1_auth_proto_rawDesc), len(file_auth_v1_auth_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   7,
+			NumMessages:   10,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
