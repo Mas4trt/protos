@@ -4,10 +4,10 @@ package auth.v1;
 
 option go_package = "github.com/Mas4trt/protos/gen/go/auth/v1;authv1";
 
-service Auth {
+service AuthService {
   rpc Register(RegisterRequest) returns (RegisterResponse);
-  rpc Authenticate(LoginRequest) returns (LoginResponse);
-  rpc RefreshTokens(RefreshTokensRequest) returns (LoginResponse);
+  rpc Authenticate(AuthenticateRequest) returns (AuthenticateResponse);
+  rpc RefreshTokens(RefreshTokensRequest) returns (RefreshTokensResponse);
   rpc Logout(LogoutRequest) returns (LogoutResponse);
   rpc GetRole(GetRoleRequest) returns (GetRoleResponse);
 }
@@ -31,13 +31,13 @@ message RegisterResponse {
   uint64 user_id = 1; // отдаём только id, e-mail клиент уже знает
 }
 
-message LoginRequest {
+message AuthenticateRequest {
   string email = 1;
   string password = 2;
   uint64 application_id = 3;
 }
 
-message LoginResponse {
+message AuthenticateResponse {
   string access_token = 1;
   string refresh_token = 2;
 }
@@ -53,6 +53,11 @@ message GetRoleResponse {
 message RefreshTokensRequest {
   string refresh_token = 1;
   uint64 application_id = 2;
+}
+
+message RefreshTokensResponse {
+  string access_token = 1;
+  string refresh_token = 2;
 }
 
 message LogoutRequest {
