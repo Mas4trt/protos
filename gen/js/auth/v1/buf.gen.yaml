@@ -1,0 +1,18 @@
+# Генерирует JS-биндинги сообщений + grpc-web клиент из proto/auth/v1/auth.proto.
+# Плагины подтягиваются с BSR, локальный protoc и protoc-gen-grpc-web не нужны.
+#
+#   npx buf generate
+#
+# Результат идёт в src/proto-gen/ — этот каталог в .gitignore, он всегда
+# пересобирается из proto/, руками не редактируется.
+version: v2
+plugins:
+  - remote: buf.build/protocolbuffers/js
+    out: src/proto-gen
+    opt:
+      - import_style=commonjs
+  - remote: buf.build/grpc/web
+    out: src/proto-gen
+    opt:
+      - import_style=commonjs+dts
+      - mode=grpcwebtext
