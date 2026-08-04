@@ -26,7 +26,6 @@ jobs:
         run: buf lint
 
       - name: Buf breaking
-        # Используем origin/main, так как GitHub Actions хранит целевую ветку там
         run: buf breaking --against '.git#ref=origin/main'
 
   push:
@@ -35,7 +34,6 @@ jobs:
     needs: lint
     steps:
       - uses: actions/checkout@v4
-        # Здесь fetch-depth: 0 не нужен, так как мы только пушим текущее состояние
 
       - uses: bufbuild/buf-setup-action@v1
         with:
